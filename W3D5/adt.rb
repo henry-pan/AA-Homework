@@ -10,7 +10,6 @@ class Stack
 
   def pop
     @stack.pop
-
   end
 
   def peek
@@ -18,6 +17,7 @@ class Stack
   end
 
 end
+
 
 class Queue
 
@@ -75,3 +75,4 @@ class Map
   end
 
 end
+
