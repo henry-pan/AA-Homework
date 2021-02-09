@@ -1,37 +1,59 @@
 # PHASE 2
 def convert_to_int(str)
-  Integer(str)
+  begin
+    Integer(str)
+  rescue
+    puts "Conversion failed."
+  end
 end
 
 # PHASE 3
 FRUITS = ["apple", "banana", "orange"]
 
+class CoffeeError < StandardError
+end
+
+class NonFruitError < StandardError
+end
+
 def reaction(maybe_fruit)
-  if FRUITS.include? maybe_fruit
+  if FRUITS.include?(maybe_fruit.downcase)
     puts "OMG, thanks so much for the #{maybe_fruit}!"
-  else 
-    raise StandardError 
-  end 
+  elsif maybe_fruit.downcase == "coffee"
+    raise CoffeeError
+  else
+    raise NonFruitError 
+  end
 end
 
 def feed_me_a_fruit
   puts "Hello, I am a friendly monster. :)"
-
-  puts "Feed me a fruit! (Enter the name of a fruit:)"
-  maybe_fruit = gets.chomp
-  reaction(maybe_fruit) 
+  begin
+    puts "Feed me a fruit! (Enter the name of a fruit:)"
+    maybe_fruit = gets.chomp
+    reaction(maybe_fruit) 
+  rescue CoffeeError => e
+    puts "Thanks for the coffee. Now give me a fruit!"
+    retry
+  rescue NonFruitError => e
+    puts "That ain't fruit!!!"
+  end  
 end  
 
 # PHASE 4
 class BestFriend
   def initialize(name, yrs_known, fav_pastime)
+    raise ArgumentError.new("Who even are you?") if name.length <= 0
+    raise ArgumentError.new("I don't even know you that well.") if yrs_known < 5
+    raise ArgumentError.new("What do you even do?") if fav_pastime.length <= 0
+
     @name = name
     @yrs_known = yrs_known
     @fav_pastime = fav_pastime
   end
 
   def talk_about_friendship
-    puts "Wowza, we've been friends for #{@yrs_known}. Let's be friends for another #{1000 * @yrs_known}."
+    puts "Wowza, we've been friends for #{@yrs_known} years. Let's be friends for another #{1000 * @yrs_known}!"
   end
 
   def do_friendstuff
