@@ -1,7 +1,7 @@
 # AA-Homework
 This is the repository for my homework done at App Academy.
 
-### Contents
+## Contents
 This table displays the related topic for each assignment.
 
 Directory | Assignment Topic
