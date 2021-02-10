@@ -10,6 +10,7 @@ class Simon
   end
 
   def play
+    system("clear")
     puts "Welcome to Simon!"
     sleep(3)
     system("clear")
@@ -57,7 +58,7 @@ class Simon
   end
 
   def round_success_message
-    puts "\nCongratulations! You win this round."
+    puts "\nCongratulations! You win this round. Your score is #{sequence_length}."
   end
 
   def game_over_message
